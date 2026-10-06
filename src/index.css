@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-arcade-darkest text-slate-100 font-sans selection:bg-arcade-gold selection:text-arcade-darkest overflow-x-hidden;
+    background-image: 
+      radial-gradient(circle at 50% 10%, rgba(139, 92, 246, 0.12) 0%, transparent 60%),
+      radial-gradient(circle at 10% 40%, rgba(0, 240, 255, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(255, 215, 0, 0.06) 0%, transparent 50%),
+      linear-gradient(to bottom, #030206, #080511 40%, #030206 100%);
+    background-attachment: fixed;
+  }
+
+  /* Pixel rendering everywhere for true retro aesthetic */
+  canvas, img, svg {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* CRT Scanlines and curvature */
+.crt-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.crt-effect::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 26, 0) 50%, rgba(0, 0, 0, 0.35) 50%);
+  background-size: 100% 4px;
+  z-index: 20;
+  pointer-events: none;
+  opacity: 10;
+}
+
+.crt-bloom {
+  box-shadow: 
+    0 0 25px rgba(0, 240, 255, 0.25),
+    inset 0 0 40px rgba(0, 0, 0, 0.8),
+    inset 0 0 10px rgba(0, 240, 255, 0.3);
+}
+
+/* Pixel borders */
+.pixel-box {
+  box-shadow: 
+    -4px 0 0 0 #000,
+    4px 0 0 0 #000,
+    0 -4px 0 0 #000,
+    0 4px 0 0 #000,
+    -4px -4px 0 0 #000,
+    4px -4px 0 0 #000,
+    -4px 4px 0 0 #000,
+    4px 4px 0 0 #000;
+}
+
+.pixel-box-gold {
+  border: 3px solid #ffd700;
+  box-shadow: 
+    0 0 10px rgba(255, 215, 0, 0.4),
+    inset 0 0 8px rgba(255, 215, 0, 0.2);
+}
+
+.pixel-box-cyan {
+  border: 3px solid #00f0ff;
+  box-shadow: 
+    0 0 10px rgba(0, 240, 255, 0.4),
+    inset 0 0 8px rgba(0, 240, 255, 0.2);
+}
+
+.pixel-box-purple {
+  border: 3px solid #a855f7;
+  box-shadow: 
+    0 0 10px rgba(168, 85, 247, 0.4),
+    inset 0 0 8px rgba(168, 85, 247, 0.2);
+}
+
+/* Glowing text effects */
+.glow-gold {
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.8), 0 0 16px rgba(255, 215, 0, 0.4);
+}
+
+.glow-cyan {
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.8), 0 0 16px rgba(0, 240, 255, 0.4);
+}
+
+.glow-purple {
+  text-shadow: 0 0 8px rgba(168, 85, 247, 0.8), 0 0 16px rgba(168, 85, 247, 0.4);
+}
+
+/* Custom retro scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #080511;
+  border-left: 1px solid #1f183d;
+}
+::-webkit-scrollbar-thumb {
+  background: #a855f7;
+  border: 2px solid #080511;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ffd700;
+}
